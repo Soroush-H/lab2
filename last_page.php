@@ -8,7 +8,7 @@
 
 
 // Connecting, selecting database
-$dbconn = pg_connect("host=localhost dbname=lab2 user=akai password=")
+$dbconn = pg_connect("host=localhost dbname=lab2 user=postgres password=Soroush1994")
     or die('Could not connect: ' . pg_last_error());
 
 // Performing SQL query
