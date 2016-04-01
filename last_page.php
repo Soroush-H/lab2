@@ -16,15 +16,13 @@ $query = 'SELECT combination FROM Problems';
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 
-
+echo 'Du har nu lämnat in uppgiften';
 
 // Printing results in HTML
 while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC))
 {
 	//echo "hej";
 	foreach ($arr as $col_value) {
-
-		 echo 'Du har nu lämnat in uppgiften';
 		 
    
 	}

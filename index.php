@@ -15,13 +15,15 @@ $dbconn = pg_connect("host=localhost dbname=lab2 user=postgres password=Soroush1
 $query = 'SELECT combination FROM Problems';
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
+$insertquery = 'INSERT INTO Submitted VALUES ('')
+
 
   echo'<form action="problems_page.php">';
-  echo'First name:<br>';
-  echo '<input type="text" name="firstname" value=""><br>';
-  echo'Last name:<br>';
+  echo'Student ID:<br>';
+  echo '<input type="text" name="student id" value=""><br>';
+  echo'Course ID<br>';
   echo'<input type="text" name="lastname" value=""><br><br>';
-  echo'Group (between A and :<br>';
+  echo'Group (between A and ):<br>';
   echo'<input type="text" name="group" value=""><br><br>';
   echo'Recitation number:<br>';
   echo'<input type="text" name="recitation" value=""><br><br>';
@@ -33,17 +35,17 @@ while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC))
 {
 
 
-	foreach ($arr as $col_value) {
+  foreach ($arr as $col_value) {
 
-		 /*echo '<form>';
-		 echo '<input type="radio" name="combinations" value= $col_value >';
-		 echo "$col_value";
-		 echo '<br>';
-		 echo '</form>';
+     /*echo '<form>';
+     echo '<input type="radio" name="combinations" value= $col_value >';
+     echo "$col_value";
+     echo '<br>';
+     echo '</form>';
 */   
 
 
-	}
+  }
 
 }
 
