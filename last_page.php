@@ -4,11 +4,11 @@
 
 <?php
 // error_reporting(E_ALL);
-//ini_set( 'display_errors','1'); 
+//ini_set( 'display_errors','1');
 
 
 // Connecting, selecting database
-$dbconn = pg_connect("host=localhost dbname=lab2 user=postgres password=Soroush1994")
+$dbconn = pg_connect("host=localhost dbname=lab2 user=akai password=")
     or die('Could not connect: ' . pg_last_error());
 
 // Performing SQL query
@@ -23,8 +23,7 @@ while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC))
 {
 	//echo "hej";
 	foreach ($arr as $col_value) {
-		 
-   
+
 	}
 
 }
