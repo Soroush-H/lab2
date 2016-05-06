@@ -13,6 +13,7 @@ $studentID = $_GET['studentID'];
 $recitation = $_GET['recitation'];
 $combination = $_GET['combination'];
 echo "ditt courseid är: $courseID ";
+echo "<br>";
 
 
 // Connecting, selecting database
@@ -25,15 +26,17 @@ $Pointquery = "SELECT points FROM problems WHERE combination = '$combination' AN
 
 $PointResult = pg_query($Pointquery) or die('Query failed:' . pg_last_error());
 // echo "NumberResult: $PointResult\n";
-$ans = pg_fetch_result($PointResult, 0, number);
+$ans = pg_fetch_result($PointResult, 0, points);
+
+echo "Ditt poäng är : $ans";
+echo "<br>";
+echo "Ditt användarid är : $studentID";
 
 
-
-
+$sql = "INSERT INTO submitted(studentid, courseid, groupr, number, combination, points) VALUES('$studentID','$courseID','$group', '$recitation', '$combination', '$ans')";
 
 // Performing SQL query
-$result = pg_query($dbconn, "INSERT INTO submitted(studentid, courseid, groupr, number, combination, points)
-  VALUES($studentid, $courseid, $group, $recitation, $combination, $ans);");
+$result = pg_query($sql);
 
 echo 'Du har nu lämnat in uppgiften';
 echo "fuu";
