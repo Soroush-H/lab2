@@ -7,34 +7,45 @@
 //ini_set( 'display_errors','1');
 
 
+$courseID = $_GET['courseID'];
+$group = $_GET['group'];
+$studentID = $_GET['studentID'];
+$recitation = $_GET['recitation'];
+$combination = $_GET['combination'];
+echo "ditt courseid är: $courseID ";
+
+
 // Connecting, selecting database
 $dbconn = pg_connect("host=localhost dbname=lab2 user=postgres password=Soroush1994")
     or die('Could not connect: ' . pg_last_error());
 
-// Performing SQL query
-$query = 'SELECT combination FROM Problems';
-$result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
+$Pointquery = "SELECT points FROM problems WHERE combination = '$combination' AND number = '$recitation'";
+
+
+$PointResult = pg_query($Pointquery) or die('Query failed:' . pg_last_error());
+// echo "NumberResult: $PointResult\n";
+$ans = pg_fetch_result($PointResult, 0, number);
+
+
+
+
+
+// Performing SQL query
+$result = pg_query($dbconn, "INSERT INTO submitted(studentid, courseid, groupr, number, combination, points)
+  VALUES($studentid, $courseid, $group, $recitation, $combination, $ans);");
 
 echo 'Du har nu lämnat in uppgiften';
+echo "fuu";
 
 // Printing results in HTML
-while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC))
-{
-	//echo "hej";
-	foreach ($arr as $col_value) {
-
-	}
-
-}
-
+var_dump($result);
 
 
 
 
 
 // Free resultset
-pg_free_result($result);
 
 // Closing connection
 pg_close($dbconn);

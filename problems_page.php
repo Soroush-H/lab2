@@ -4,7 +4,7 @@
 
 <?php
 // error_reporting(E_ALL);
-//ini_set( 'display_errors','1'); 
+//ini_set( 'display_errors','1');
 
 
 // Connecting, selecting database
@@ -17,9 +17,13 @@ $dbconn = pg_connect("host=localhost dbname=lab2 user=postgres password=Soroush1
 
 $courseID = $_GET['CourseID'];
 $group = $_GET['group'];
+$studentID = $_GET['StudentID'];
+$recitation = $_GET['recitation'];
+
 
 echo "Här är din courseid: $courseID";
 echo "Här är din grupp: $group";
+
 
 
 $CourseIDquery = "SELECT Number FROM Recitation WHERE courseid = '$courseID' AND groupr = '$group'";
@@ -51,13 +55,17 @@ while ($arr = pg_fetch_array($result, null, PGSQL_ASSOC))
 	foreach ($arr as $col_value) {
 		 echo'<form action="last_page.php">';
 		 echo '<form>';
-		 echo '<input type="radio" name="combinations" value= $col_value >';
+		 echo '<input type="radio" name="combination" value='.$col_value.'>';
+     echo '<input type="hidden" name="courseID" value='.$courseID.'>';
+     echo '<input type="hidden" name="group" value='.$group.'>';
+     echo '<input type="hidden" name="studentID" value='.$studentID.'>';
+     echo '<input type="hidden" name="recitation" value='.$recitation.'>';
 		 echo "$col_value";
 		 echo '<br>';
 		 echo'<input type="submit" value="Submit">';
 		 echo '</form>';
 
-   
+
 	}
 
 }
