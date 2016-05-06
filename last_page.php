@@ -31,7 +31,7 @@ $ans = pg_fetch_result($PointResult, 0, points);
 echo "Ditt poäng är : $ans";
 echo "<br>";
 echo "Ditt användarid är : $studentID";
-
+echo "<br>";
 
 $Teacherquery = "SELECT teacherid FROM course WHERE courseid = '$courseID'";
 
@@ -39,6 +39,8 @@ $Teacherquery = "SELECT teacherid FROM course WHERE courseid = '$courseID'";
 $TeacherResult = pg_query($Teacherquery) or die('Query failed:' . pg_last_error());
 // echo "NumberResult: $PointResult\n";
 $teacherID = pg_fetch_result($PointResult, 0, teacherid);
+echo "din lärare är: $teacherID";
+echo "<br>";
 
 $sql = "INSERT INTO submitted(studentid, courseid, teacherid, groupr, number, combination, points) VALUES($studentID,$courseID,$teacherID,$group, $recitation, $combination, $ans)";
 
