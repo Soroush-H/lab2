@@ -33,7 +33,14 @@ echo "<br>";
 echo "Ditt användarid är : $studentID";
 
 
-$sql = "INSERT INTO submitted(studentid, courseid, groupr, number, combination, points) VALUES('$studentID','$courseID','$group', '$recitation', '$combination', '$ans')";
+$Teacherquery = "SELECT teacherid FROM course WHERE courseid = '$courseID'";
+
+
+$TeacherResult = pg_query($Teacherquery) or die('Query failed:' . pg_last_error());
+// echo "NumberResult: $PointResult\n";
+$teacherID = pg_fetch_result($PointResult, 0, teacherid);
+
+$sql = "INSERT INTO submitted(studentid, courseid, teacherid groupr, number, combination, points) VALUES($studentID,$courseID,$teacherID,$group, $recitation, $combination, $ans)";
 
 // Performing SQL query
 $result = pg_query($sql);
